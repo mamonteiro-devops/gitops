@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: strimzi-kafka
+  namespace: strimzi
+spec:
+  destination:
+    namespace: strimzi
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: strimzi/strimzi-kafka-operator/
+    repoURL: "https://github.com/mamonteiro-devops/helm-apps.git"
+    targetRevision: main
+    helm:
+      releaseName: kafka-strimzi-release
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+

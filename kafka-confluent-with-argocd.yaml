@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-kafka
+  namespace: argo
+spec:
+  destination:
+    namespace: confluent
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: confluent/cp-helm-charts/
+    repoURL: "https://github.com/mamonteiro-devops/kafka.git"
+    targetRevision: main
+    helm:
+      releaseName: kafka-release
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+

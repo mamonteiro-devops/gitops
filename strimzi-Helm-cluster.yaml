@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: strimzi-cluster
+  namespace: argocd
+spec:
+  destination:
+    namespace: directory-app
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: strimzi
+    repoURL: "https://github.com/mamonteiro-devops/kafka.git"
+    targetRevision: main
+    directory:
+      recurse: false
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

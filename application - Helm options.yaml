@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: strimzi-operator
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: strimzi
+    server: "https://kubernetes.default.svc"
+  project: default
+  source: 
+    path: strimzi/strimzi-kafka-operator/
+    repoURL: "https://github.com/mamonteiro-devops/helm-apps.git"
+    targetRevision: main
+    helm:
+     releaseName: my-strimzi-operator
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    
