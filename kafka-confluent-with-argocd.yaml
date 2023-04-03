@@ -2,7 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: helm-kafka
-  namespace: argo
+  ## Argo cd namespace, this is required for Argo CD to work
+  namespace: argocd
 spec:
   destination:
     namespace: confluent

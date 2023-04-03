@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-metadata:
-  name: strimzi-cluster
+metadata: 
+  name: topics
   namespace: argocd
-spec:
+spec: 
   destination:
-    namespace: directory-app
+    namespace: topics
     server: "https://kubernetes.default.svc"
   project: default
-  source:
-    path: strimzi/strimzi-kafka-cluster
-    repoURL: "https://github.com/mamonteiro-devops/helm-apps.git"
-    targetRevision: main
+  source: 
+    path: kafka-topics/base/
+    repoURL: "https://github.com/gkoenig/strimzi-jaeger-eval.git"
+    targetRevision: HEAD
     directory:
       recurse: false
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+
+    

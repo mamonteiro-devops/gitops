@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-metadata:
-  name: strimzi-kafka
-  namespace: strimzi
-spec:
-  destination:
-    namespace: strimzi
+metadata: 
+  name: kafka-ui
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: kafka-ui
     server: "https://kubernetes.default.svc"
   project: default
-  source:
-    path: strimzi/strimzi-kafka-operator/
+  source: 
+    path: kafka-ui/kafka-ui/
     repoURL: "https://github.com/mamonteiro-devops/helm-apps.git"
     targetRevision: main
     helm:
-      releaseName: kafka-strimzi-release
+     releaseName: my-kafka-ui
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
 
-
+    
